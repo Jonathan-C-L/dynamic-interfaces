@@ -3,7 +3,7 @@
 
  module.exports = {
    entry: {
-     app: '../src/index.js',
+     app: './src/index.js',
    },
    output: {
      filename: '[name].bundle.js',
@@ -13,7 +13,7 @@
    plugins: [
      new HtmlWebpackPlugin({
       title: 'Production',
-      template: "../src/index.html",
+      template: "./src/index.html",
      }),
    ],
     module: {
