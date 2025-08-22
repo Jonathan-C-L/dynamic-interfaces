@@ -1,17 +1,18 @@
 import dropIcon from "../assets/menu.png";
 
-export {renderDropdownButton};
+export {createDropdownButton};
 
-function renderDropdownButton(){
-    console.log("Rendering dropdown");
-    
-    const dropdown = createImage(dropIcon, "dropdown menu icon");
+function createDropdownButton(){
+    console.log("Rendering dropdown button");
 
-    document.querySelector("main").appendChild(dropdown);
+    return createImage(dropIcon, "dropdown menu icon");
 }
 function createImage(path, alt){
     const newImage = new Image();
     newImage.src = path;
     newImage.alt = alt;
     return newImage;
+}
+function createDropdownItem(label, ...tags){
+
 }

@@ -1,7 +1,7 @@
 // imports
 import "./styles.css";
-import { renderDropdownButton } from "./components/dropdown.js";
-import { addGlobalEventListener } from "./lib/lib.js";
+import { dropdownButton } from "./components/dropdown.js";
+import { addGlobalEventListener, appendAll } from "./lib/lib.js";
 
 //  checks node environment
 if (process.env.NODE_ENV !== 'production') {
@@ -10,8 +10,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const main = document.querySelector("main");
 
-renderDropdownButton();
-
-addGlobalEventListener("click", "main img", main, (e)=>{
+addGlobalEventListener("mouseover", "main img", main, (e)=>{
   console.log(e);
 });
