@@ -37,10 +37,10 @@ function createNewContainer(name, children, id = ""){
     return container;
 }
 // using the rest parameter (...) to treat an indefinite number of arguments as an array
-function createNewElement(type, ...names){
+function createNewElement(type, ...tags){
     const newElement = document.createElement(type);
-    for(let name of names){
-        newElement.classList.add(name);
+    for(let tag of tags){
+        newElement.classList.add(tag);
     };
 
     return newElement;

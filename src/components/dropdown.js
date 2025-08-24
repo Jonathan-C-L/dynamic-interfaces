@@ -1,4 +1,5 @@
 import dropIcon from "../assets/menu.png";
+import { createNewElement } from "../lib/lib.js";
 
 export {createDropdownButton};
 
@@ -14,5 +15,7 @@ function createImage(path, alt){
     return newImage;
 }
 function createDropdownItem(label, ...tags){
+    console.log(`Rendering ${label} in the dropdown`);
 
+    return createNewElement("a", );
 }
