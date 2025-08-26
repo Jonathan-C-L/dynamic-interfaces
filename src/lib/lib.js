@@ -1,4 +1,4 @@
-export { resetContainer, addGlobalEventListener, createNewContainer, createNewElement, appendAll, generateRandomNumber};
+export { addGlobalEventListener, createNewContainer, createNewElement, newImage, appendAll};
 
 function resetContainer(containerID){
     const container = document.querySelector(containerID);
@@ -25,7 +25,8 @@ function createNewContainer(name, children, id = ""){
     container.classList.add("container");
     container.classList.add(name);
     // optional
-    container.setAttribute("id", id);
+    if(id != "")
+        container.setAttribute("id", id);
 
     // check to see if an nodes are in an array to iterate through
     if(Array.isArray(children)){
@@ -54,4 +55,11 @@ function appendAll(parent, ...children){
 //generates random number between min(inclusive) and max(exclusive)
 function generateRandomNumber(min = 0, max = 1){
     return Math.floor(Math.random()*(max-min))+min;
+}
+// function allows image objects to be created in one line
+function newImage(path, alt){
+    const newImage = new Image();
+    newImage.src = path;
+    newImage.alt = alt;
+    return newImage;
 }

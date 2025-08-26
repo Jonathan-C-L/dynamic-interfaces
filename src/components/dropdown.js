@@ -1,21 +1,30 @@
 import dropIcon from "../assets/menu.png";
-import { createNewElement } from "../lib/lib.js";
+import { createNewElement, createNewContainer, newImage } from "../lib/lib.js";
 
-export {createDropdownButton};
+export { renderDropdownMenu };
 
-function createDropdownButton(){
-    console.log("Rendering dropdown button");
+function renderDropdownMenu(){
+    const menu = createDropdownMenu("Home", "About", "Shop");
+    console.log(dropIcon);
 
-    return createImage(dropIcon, "dropdown menu icon");
+    return {dropIcon, menu};
 }
-function createImage(path, alt){
-    const newImage = new Image();
-    newImage.src = path;
-    newImage.alt = alt;
-    return newImage;
+
+function createDropdownMenu(...items){
+    let temp = [];
+    for(let item of items){
+        temp.push(createDropdownItem(item));
+    }
+
+    return temp;
 }
-function createDropdownItem(label, ...tags){
+
+function createDropdownItem(label, href = "#"){
     console.log(`Rendering ${label} in the dropdown`);
+    const element = createNewElement("a", label);
+    element.classList.add("hidden");
+    element.textContent = label;
+    element.href = href;
 
-    return createNewElement("a", );
+    return element;
 }
