@@ -4,9 +4,6 @@
 "deploy": deploys the code to github pages,
 "initialize": installs dev dependencies for images, styling, and html
 
-## dependencies
-1. 
-
 ## dev dependencies
 1. ESLint
 <!-- install eslint first -->

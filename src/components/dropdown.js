@@ -5,7 +5,6 @@ export { renderDropdownMenu };
 
 function renderDropdownMenu(){
     const menu = createDropdownMenu("Home", "About", "Shop");
-    console.log(dropIcon);
 
     return {dropIcon, menu};
 }

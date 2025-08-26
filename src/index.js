@@ -9,12 +9,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const main = document.querySelector("main");
-clickDropdown();
-hoverDropdown();
+comboDropdown();
 
 // functions
-function clickDropdown(){
-  // click dropdown
+// combination of both the hover and click mechanisms - feels more fluid and natural to have both options
+function comboDropdown(){
   const dropdownElements = renderDropdownMenu();
   main.appendChild(createNewContainer("click", [newImage(dropdownElements.dropIcon, "dropdown icon")]));
 
@@ -25,11 +24,25 @@ function clickDropdown(){
     clickDropdown.appendChild(item);
   }
 
-  dropOnClick(".click img", clickDropdown);
+  dropOnClick(".click", clickDropdown);
+  dropOnHover(".click", clickDropdown);
 }
+// just the click mechanism for the dropdown menu
+function clickDropdown(){
+  const dropdownElements = renderDropdownMenu();
+  main.appendChild(createNewContainer("click", [newImage(dropdownElements.dropIcon, "dropdown icon")]));
 
+  const clickDropdown = document.querySelector(".click");
+  clickDropdown.classList.add("dropdown");
+
+  for(let item of dropdownElements.menu){
+    clickDropdown.appendChild(item);
+  }
+
+  dropOnClick(".click", clickDropdown);
+}
+// just the hover mechanism for the dropdown menu
 function hoverDropdown(){
-  // hover dropdown
   const dropdownElements = renderDropdownMenu();
   main.appendChild(createNewContainer("hover", [newImage(dropdownElements.dropIcon, "dropdown icon")]));
   
@@ -40,28 +53,28 @@ function hoverDropdown(){
     hoverDropdown.appendChild(item);
   }
 
-  dropOnHover(".hover img", hoverDropdown);
+  dropOnHover(".hover", hoverDropdown);
 }
 
 // event listeners
 function dropOnClick(selector, parent){
-  const links = document.querySelectorAll(".click a");
+  const links = document.querySelectorAll(`${selector} a`);
 
-  addGlobalEventListener("click", selector, parent, ()=>{
+  addGlobalEventListener("click", `${selector} img`, parent, ()=>{
     links.forEach((e)=>{
       e.classList.toggle("hidden");
     });
   });
 }
 function dropOnHover(selector, parent){
-  const links = document.querySelectorAll(".hover a");
+  const links = document.querySelectorAll(`${selector} a`);
 
-  addGlobalEventListener("mouseover", selector, parent, ()=>{
+  addGlobalEventListener("mouseover", `${selector} img`, parent, ()=>{
     links.forEach((e)=>{
       e.classList.remove("hidden");
     });
   });
-  addGlobalEventListener("mouseout", ".container.hover", main, ()=>{
+  addGlobalEventListener("mouseleave", selector, parent, ()=>{
     links.forEach((e)=>{
       e.classList.add("hidden");
     });
