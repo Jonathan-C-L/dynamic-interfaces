@@ -9,6 +9,9 @@ body {
     text-rendering: optimizeSpeed;
     line-height: 1.5;
     min-height: 100vh;
+    display: grid;
+    grid-template: 
+        auto 1fr auto / auto 1fr auto;
 }
 input,
 button,
@@ -19,12 +22,28 @@ select {
 main{
     display: flex;
     justify-content: center;
+    grid-column: 2/3;
 }
-main img{
+header{
+    grid-column: 1/4;
+    font-size: 2rem;
+    font-weight: bold;
+}
+footer{
+    grid-column: 1/4;
+}
+.left-sidebar{
+    grid-column: 1/2;
+}
+.right-sidebar{
+    grid-column: 3/4;
+}
+
+.left-sidebar img{
     width: 32px;
     height: auto;
 }
-main img:hover{
+.left-sidebar img:hover{
     height: auto;
     box-shadow: 0 0 5px 1px black;
     border-radius: 5px;
@@ -46,11 +65,12 @@ a:hover{
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    width: 6%;
-    height: 500px;
-    border: 1px solid black;
+    min-height: 200px;
     border-radius: 8px;
     padding: 12px;
+    min-width: 100px;
+    box-shadow: 0 0 10px 2px gray;
+    margin: 12px 28px;
 }
 .dropdown img{
     margin-bottom: 5px;
