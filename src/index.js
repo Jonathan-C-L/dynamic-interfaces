@@ -1,6 +1,6 @@
-// imports
 import "./styles.css";
 import { renderDropdownMenu } from "./components/dropdown.js";
+import { createImageSubmitForm } from "./components/image-upload.js";
 import { addGlobalEventListener, createNewContainer, newImage } from "./lib/lib.js";
 
 //  checks node environment
@@ -10,8 +10,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 const leftSidebar = document.querySelector(".left-sidebar");
 comboDropdown();
+createImageSubmitForm("Upload Your Images");
 
-// functions
+// rendering the dom elements based on the information imported
 // combination of both the hover and click mechanisms - feels more fluid and natural to have both options
 function comboDropdown(){
   const dropdownElements = renderDropdownMenu();
@@ -24,28 +25,32 @@ function comboDropdown(){
     clickDropdown.appendChild(item);
   }
 
-  dropOnClick(".click", clickDropdown);
-  dropOnHover(".click", clickDropdown);
+  dropClick(".click", clickDropdown);
+  exitHover(".click", clickDropdown);
 }
 
 // event listeners
-function dropOnClick(selector, parent){
+function dropClick(selector, parent){
   const links = document.querySelectorAll(`${selector} a`);
 
-  addGlobalEventListener("click", `${selector} img`, parent, ()=>{
+  addGlobalEventListener("click", selector, parent, ()=>{
     links.forEach((e)=>{
       e.classList.toggle("hidden");
     });
   });
 }
-function dropOnHover(selector, parent){
+function dropHover(selector, parent){
   const links = document.querySelectorAll(`${selector} a`);
 
-  addGlobalEventListener("mouseover", `${selector} img`, parent, ()=>{
+  addGlobalEventListener("mouseover", selector, parent, ()=>{
     links.forEach((e)=>{
       e.classList.remove("hidden");
     });
   });
+}
+function exitHover(selector, parent){
+  const links = document.querySelectorAll(`${selector} a`);
+
   addGlobalEventListener("mouseleave", selector, parent, ()=>{
     links.forEach((e)=>{
       e.classList.add("hidden");

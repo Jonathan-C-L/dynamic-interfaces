@@ -16,7 +16,8 @@ body {
 input,
 button,
 textarea,
-select {
+select,
+#file-upload-button{
     font: inherit;
 }
 main{
@@ -32,24 +33,26 @@ header{
 footer{
     grid-column: 1/4;
 }
+dialog{
+    border: none;
+    box-shadow: 0 0 10px 2px gray;
+    border-radius: 8px;
+    width: 30%;
+    margin: auto;
+}
 .left-sidebar{
     grid-column: 1/2;
 }
 .right-sidebar{
     grid-column: 3/4;
 }
-
 .left-sidebar img{
     width: 32px;
     height: auto;
 }
-.left-sidebar img:hover{
-    height: auto;
-    box-shadow: 0 0 5px 1px black;
-    border-radius: 5px;
-}
 a{
     text-decoration: none;
+    color: black;
 }
 a:visited{
     color: black;
@@ -65,19 +68,73 @@ a:hover{
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    min-height: 200px;
     border-radius: 8px;
-    padding: 12px;
-    min-width: 100px;
+    padding: 24px;
     box-shadow: 0 0 10px 2px gray;
     margin: 12px 28px;
 }
-.dropdown img{
-    margin-bottom: 5px;
-}
 .dropdown a{
     font-size: 2rem;
+    margin-top: 8px;
+}
+.dropdown img{
+    pointer-events: none;
 }
 .hidden{
     display: none;
 }
+form{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 125px;
+}
+form>label{
+    font-size: larger;
+}
+::file-selector-button, .submit{
+    padding: 2px 24px;
+    border-radius: 3rem;
+    height: 2rem;
+    border: 2px solid black;
+}
+::file-selector-button:hover, .submit:hover{
+    border-width: 3px;
+    background-color: lightgray;
+}
+::file-selector-button:active, .submit:active{
+    background-color: darkgray;
+}
+.modal{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+}
+.modal img:first-child{
+    width: 4rem;
+    align-self: center;
+}
+.modal img{
+    width: 1rem;
+    height: max-content;
+    aspect-ratio: 1;
+}
+.modal img:last-child{
+    height: fit-content;
+    padding: 4px;
+    border-radius: 50%;
+}
+.modal img:last-child:hover{
+    background-color: lightgray;
+}
+.modal>h3{
+    border: 1px solid black;
+    height: fit-content;
+    border-radius: 50%;
+}
+
