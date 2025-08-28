@@ -3,13 +3,13 @@
 //   -> returns all of the necessary info to be assembled in the index.js
 
 import dropIcon from "../assets/menu.png";
-import { createNewElement, createNewContainer, newImage } from "../lib/lib.js";
+import { createNewElement } from "../lib/lib.js";
 
 export { renderDropdownMenu };
 
 // returns the created dom elements for the dropdown icon and links
 function renderDropdownMenu(){
-    const menu = createDropdownMenu("Home", "About", "Shop");
+    const menu = createDropdownMenu("Home", "About", "Add Image");
 
     return {dropIcon, menu};
 }
@@ -25,8 +25,7 @@ function createDropdownMenu(...items){
 // creates a new dropdown item with a working link and label
 function createDropdownItem(label, href = "#"){
     console.log(`Rendering ${label} in the dropdown`);
-    const element = createNewElement("a", label);
-    element.classList.add("hidden");
+    const element = createNewElement("a", "hidden");
     element.textContent = label;
     element.href = href + label;
 

@@ -1,7 +1,7 @@
 import "./styles.css";
 import { renderDropdownMenu } from "./components/dropdown.js";
 import { createImageSubmitForm } from "./components/image-upload.js";
-import { addGlobalEventListener, createNewContainer, newImage } from "./lib/lib.js";
+import { addGlobalEventListener, appendAll, createNewContainer, newImage } from "./lib/lib.js";
 
 //  checks node environment
 if (process.env.NODE_ENV !== 'production') {
@@ -11,12 +11,13 @@ if (process.env.NODE_ENV !== 'production') {
 const leftSidebar = document.querySelector(".left-sidebar");
 comboDropdown();
 createImageSubmitForm("Upload Your Images");
+dialogEvents();
 
 // rendering the dom elements based on the information imported
 // combination of both the hover and click mechanisms - feels more fluid and natural to have both options
 function comboDropdown(){
   const dropdownElements = renderDropdownMenu();
-  leftSidebar.appendChild(createNewContainer("click", [newImage(dropdownElements.dropIcon, "dropdown icon")]));
+  appendAll(leftSidebar, createNewContainer("click", [newImage(dropdownElements.dropIcon, "dropdown icon")]));
 
   const clickDropdown = document.querySelector(".click");
   clickDropdown.classList.add("dropdown");
@@ -55,5 +56,16 @@ function exitHover(selector, parent){
     links.forEach((e)=>{
       e.classList.add("hidden");
     });
+  });
+}
+function dialogEvents(){
+  const exitButton = document.querySelector(".exit");
+  const modal = document.querySelector("dialog");
+
+  addGlobalEventListener("click", ".dropdown a:last-child", leftSidebar, ()=>{
+    modal.showModal();
+  });
+  addGlobalEventListener("click", ".exit", exitButton, ()=>{
+    modal.close();
   });
 }

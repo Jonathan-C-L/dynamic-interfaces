@@ -19,6 +19,7 @@ function createImageSubmitForm(formLabel){
     submit.textContent = "Submit";
     const imageIcon = newImage(imageUpload, "image upload icon");
     const exitIcon = newImage(exit, "exit icon");
+    exitIcon.classList.add("exit");
 
     appendAll(form, label, input, submit);
     appendAll(modal, imageIcon, form, exitIcon);

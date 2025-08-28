@@ -22,3 +22,6 @@ function prevImage(){
 function autoPlay(){
 
 }
+function createCarousel(images){
+    const carousel = createNewContainer("carousel", images);
+}

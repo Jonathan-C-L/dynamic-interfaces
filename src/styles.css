@@ -19,6 +19,7 @@ textarea,
 select,
 #file-upload-button{
     font: inherit;
+    
 }
 main{
     display: flex;
@@ -32,13 +33,6 @@ header{
 }
 footer{
     grid-column: 1/4;
-}
-dialog{
-    border: none;
-    box-shadow: 0 0 10px 2px gray;
-    border-radius: 8px;
-    width: 30%;
-    margin: auto;
 }
 .left-sidebar{
     grid-column: 1/2;
@@ -68,6 +62,7 @@ a:hover{
     display: flex;
     flex-direction: column;
     align-items: baseline;
+    width: fit-content;
     border-radius: 8px;
     padding: 24px;
     box-shadow: 0 0 10px 2px gray;
@@ -79,6 +74,7 @@ a:hover{
 }
 .dropdown img{
     pointer-events: none;
+    width: 32px;
 }
 .hidden{
     display: none;
@@ -93,6 +89,9 @@ form{
     flex-direction: column;
     justify-content: space-between;
     height: 125px;
+}
+header h1{
+    margin: auto;
 }
 form>label{
     font-size: larger;
@@ -110,10 +109,18 @@ form>label{
 ::file-selector-button:active, .submit:active{
     background-color: darkgray;
 }
+dialog{
+    box-shadow: 0 0 10px 2px gray;
+    border-radius: 8px;
+    border: none;
+    margin: auto;
+}
 .modal{
     display: flex;
     justify-content: space-between;
-    padding: 12px 24px;
+    padding: 12px 18px;
+    width: 415px;
+    gap: 24px;
 }
 .modal img:first-child{
     width: 4rem;
@@ -129,12 +136,10 @@ form>label{
     padding: 4px;
     border-radius: 50%;
 }
-.modal img:last-child:hover{
+.exit:hover{
     background-color: lightgray;
 }
-.modal>h3{
-    border: 1px solid black;
-    height: fit-content;
-    border-radius: 50%;
+.exit:active{
+    background-color: darkgray;
 }
 
