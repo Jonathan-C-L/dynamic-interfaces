@@ -79,21 +79,19 @@ a:hover{
 .hidden{
     display: none;
 }
-form{
-    height: fit-content;
+.input{
     display: flex;
     flex-direction: column;
-}
-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 125px;
+}
+.input input{
+    text-align-last: center;
 }
 header h1{
     margin: auto;
 }
-form>label{
+.input>label{
     font-size: larger;
 }
 ::file-selector-button, .submit{
@@ -117,7 +115,6 @@ dialog{
 }
 .modal{
     display: flex;
-    justify-content: space-between;
     padding: 12px 18px;
     width: 415px;
     gap: 24px;

@@ -1,26 +1,53 @@
 import imageUpload from "../assets/image-upload.png";
 import exit from "../assets/exit.png";
-import { appendAll, createNewElement, newImage } from "../lib/lib.js";
+import { appendAll, createNewElement, newImage, addGlobalEventListener } from "../lib/lib.js";
 
-export { createImageSubmitForm };
+export { renderImageSubmitForm, imageInputEvents, dialogEvents };
 
-function createImageSubmitForm(formLabel){
+function renderImageSubmitForm(formLabel){
     const modal = document.querySelector(".modal");
-    const form = document.querySelector("form");
+    const inputs = document.querySelector(".input");
 
     const label = createNewElement("label");
     label.setAttribute("for", "image");
-    label.textContent = formLabel
+    label.textContent = formLabel;
     const input = createNewElement("input");
     input.type = "file";
     input.id = "image";
-    const submit = createNewElement("button", "submit");
-    submit.type = "submit";
-    submit.textContent = "Submit";
+    input.accept = "image/*";
     const imageIcon = newImage(imageUpload, "image upload icon");
     const exitIcon = newImage(exit, "exit icon");
     exitIcon.classList.add("exit");
 
-    appendAll(form, label, input, submit);
-    appendAll(modal, imageIcon, form, exitIcon);
+    appendAll(inputs, label, input);
+    appendAll(modal, imageIcon, inputs, exitIcon);
+}
+function imageInputEvents(){
+    const imageInput = document.querySelector("#image");
+    const modal = document.querySelector("dialog");
+
+    imageInput.addEventListener("change", function (){
+        // converts file into a data url
+        const reader = new FileReader();
+        reader.addEventListener("load", (e)=>{
+            localStorage.setItem("Uploaded Image", reader.result);
+            
+        });
+        reader.readAsDataURL(this.files[0]);
+        window.alert(`${imageInput.value} has been successfully!`);
+        imageInput.value = null;
+        modal.close();
+    });
+}
+function dialogEvents(){
+  const exitButton = document.querySelector(".exit");
+  const modal = document.querySelector("dialog");
+  const leftSidebar = document.querySelector(".left-sidebar");
+
+  addGlobalEventListener("click", ".dropdown a:last-child", leftSidebar, ()=>{
+    modal.showModal();
+  });
+  addGlobalEventListener("click", ".exit", exitButton, ()=>{
+    modal.close();
+  });
 }
