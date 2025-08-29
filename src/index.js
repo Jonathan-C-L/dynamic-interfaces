@@ -1,6 +1,7 @@
 import "./styles.css";
 import { renderDropdown, dropdownEvents } from "./components/dropdown.js";
 import { renderImageSubmitForm, imageInputEvents, dialogEvents } from "./components/image-upload.js";
+import { renderCarousel } from "./components/image-carousel.js";
 
 //  checks node environment
 if (process.env.NODE_ENV !== 'production') {
@@ -8,8 +9,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 renderDropdown();
-dropdownEvents();
 renderImageSubmitForm("Upload Your Images");
+renderCarousel();
+
+dropdownEvents();
 dialogEvents();
 imageInputEvents();
 

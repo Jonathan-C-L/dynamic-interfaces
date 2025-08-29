@@ -30,11 +30,10 @@ function imageInputEvents(){
         // converts file into a data url
         const reader = new FileReader();
         reader.addEventListener("load", (e)=>{
-            localStorage.setItem("Uploaded Image", reader.result);
-            
+            localStorage.setItem(`image #${localStorage.length}`, reader.result);
         });
         reader.readAsDataURL(this.files[0]);
-        window.alert(`${imageInput.value} has been successfully!`);
+        window.alert(`${imageInput.value} has been successfully uploaded!`);
         imageInput.value = null;
         modal.close();
     });

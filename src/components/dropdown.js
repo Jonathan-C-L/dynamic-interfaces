@@ -25,7 +25,7 @@ function createDropdownMenu(...items){
 // creates a new dropdown item with a working link and label
 function createDropdownItem(label, href = "#"){
     console.log(`Rendering ${label} in the dropdown`);
-    const element = createNewElement("a", "hidden");
+    const element = createNewElement("a");
     element.textContent = label;
     element.href = href + label;
 
@@ -35,41 +35,31 @@ function createDropdownItem(label, href = "#"){
 // combination of both the hover and click mechanisms - feels more fluid and natural to have both options
 function renderDropdown(){
   const leftSidebar = document.querySelector(".left-sidebar");
+  leftSidebar.classList.add("container");
 
   const dropdownElements = renderDropdownMenu();
-  appendAll(leftSidebar, createNewContainer("click", [newImage(dropdownElements.dropIcon, "dropdown icon")]));
+  leftSidebar.appendChild(newImage(dropdownElements.dropIcon, "dropdown icon"));
 
-  const clickDropdown = document.querySelector(".click");
-  clickDropdown.classList.add("dropdown");
+  const clickDropdown = createNewElement("div", "hidden", "dropdown", "click");
 
   for(let item of dropdownElements.menu){
     clickDropdown.appendChild(item);
   }
+  leftSidebar.appendChild(clickDropdown);
 }
 
 // event listeners
 function dropdownEvents(){
-  const clickDropdown = document.querySelector(".click");
+  const clickDropdown = document.querySelector(".left-sidebar");
 
-  dropClick(".click", clickDropdown);
+  dropClick(".left-sidebar", clickDropdown);
   exitHover(".click", clickDropdown);
 }
 function dropClick(selector, parent){
-  const links = document.querySelectorAll(`${selector} a`);
+  const links = document.querySelector(".dropdown");
 
-  addGlobalEventListener("click", selector, parent, ()=>{
-    links.forEach((e)=>{
-      e.classList.toggle("hidden");
-    });
-  });
-}
-function dropHover(selector, parent){
-  const links = document.querySelectorAll(`${selector} a`);
-
-  addGlobalEventListener("mouseover", selector, parent, ()=>{
-    links.forEach((e)=>{
-      e.classList.remove("hidden");
-    });
+  addGlobalEventListener("click", `${selector} img`, parent, ()=>{
+    links.classList.toggle("hidden");
   });
 }
 function exitHover(selector, parent){
